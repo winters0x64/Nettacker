@@ -206,14 +206,10 @@ def sanitize_report_path_filename(report_path_filename):
     filename = secure_filename(os.path.basename(report_path_filename))
     if not filename:
         return False
+    # Define a list or tuple of valid extensions
+    VALID_EXTENSIONS = (".html", ".htm", ".txt", ".json", ".csv")
     if "." in filename:
-        if (
-            filename.endswith(".html")
-            or filename.endswith(".htm")
-            or filename.endswith(".txt")
-            or filename.endswith(".json")
-            or filename.endswith(".csv")
-        ):
+        if (filename.endswith(VALID_EXTENSIONS)):
             safe_report_path = nettacker_path_config.results_dir / filename
         else:
             return False
